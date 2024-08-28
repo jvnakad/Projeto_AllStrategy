@@ -1,0 +1,474 @@
+{
+  "compatibilityLevel": 1550,
+  "model": {
+    "annotations": [
+      {
+        "name": "PBI_QueryOrder",
+        "value": "[\"PREENCHIMENTO DE DADOS\",\"caminhoRede\"]"
+      },
+      {
+        "name": "__PBI_TimeIntelligenceEnabled",
+        "value": "1"
+      },
+      {
+        "name": "PBIDesktopVersion",
+        "value": "2.132.1053.0 (24.08)"
+      },
+      {
+        "name": "PBI_ProTooling",
+        "value": "[\"DevMode\"]"
+      }
+    ],
+    "culture": "pt-BR",
+    "cultures": [
+      {
+        "name": "pt-BR",
+        "linguisticMetadata": {
+          "content": {
+            "Language": "en-US",
+            "Version": "1.0.0"
+          },
+          "contentType": "json"
+        }
+      }
+    ],
+    "dataAccessOptions": {
+      "legacyRedirects": true,
+      "returnErrorValuesAsNull": true
+    },
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "expressions": [
+      {
+        "name": "caminhoRede",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navegação"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Text"
+          }
+        ],
+        "expression": "\"C:\\Users\\joaon\\Documents\\GitHub\\Projeto_AllStrategy\\\" meta [IsParameterQuery=true, Type=\"Text\", IsParameterQueryRequired=true]",
+        "kind": "m",
+        "lineageTag": "7358a507-12c2-4012-a346-e0f89da3e87e"
+      }
+    ],
+    "sourceQueryCulture": "pt-BR",
+    "tables": [
+      {
+        "name": "PREENCHIMENTO DE DADOS",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navegação"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "NOME",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "84e464a9-7aea-4195-8bc9-7908f3ba4427",
+            "sourceColumn": "NOME",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "DATA ENTRADA",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "6ed37e72-451b-42ac-9e85-aec3dda53604",
+            "sourceColumn": "DATA ENTRADA",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "DATA ALINHAMENTO",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "ee11a128-23b3-4fa1-b193-1d5f5043dfbc",
+            "sourceColumn": "DATA ALINHAMENTO",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "PRAZO FORMALIZAÇÃOALINHAMENTO",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "9c96edac-e4f6-4b53-8dbd-545190e7440a",
+            "sourceColumn": "PRAZO FORMALIZAÇÃOALINHAMENTO",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "DATA KICKOFF",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "3bf60a5b-9b42-4826-bd5f-e9ae5b726df1",
+            "sourceColumn": "DATA KICKOFF",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "DATA ENCERRAMENTO FASE 1",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "8ad6987a-82cc-45ff-8950-36fa34db1292",
+            "sourceColumn": "DATA ENCERRAMENTO FASE 1",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "PRAZO FORMALIZAÇÃOMARCO 1",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "b9d9e84d-66dc-4aae-bda7-db2b4b5df6dc",
+            "sourceColumn": "PRAZO FORMALIZAÇÃOMARCO 1",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "DATA FORMALIZAÇÃOMARCO 1",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "69b59320-ccf6-4275-8d32-1b2faabf42c7",
+            "sourceColumn": "DATA FORMALIZAÇÃOMARCO 1",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "DATA ENCERRAMENTO FASE 2",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "17882eac-745c-4cbc-ac31-0fd81c4b22c2",
+            "sourceColumn": "DATA ENCERRAMENTO FASE 2",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "DATA FORMALIZAÇÃOMARCO 2",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "86253775-c971-495b-8b8d-b364195a2c83",
+            "sourceColumn": "DATA FORMALIZAÇÃOMARCO 2",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "FORMALIZAÇÃO MARCO 2",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "4a4bc56f-c8b4-4393-bdf2-f51c245ffdc1",
+            "sourceColumn": "FORMALIZAÇÃO MARCO 2",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "COMUNICAÇÃO PADRÃO MARCO 2",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "f595ec3e-4670-4bae-b83a-237ab131e02c",
+            "sourceColumn": "COMUNICAÇÃO PADRÃO MARCO 2",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "DATA ENTREGA PROJETO",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "07929887-f496-4d1f-9f36-e1689b652182",
+            "sourceColumn": "DATA ENTREGA PROJETO",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "8d00d64e-df4d-4062-a8c1-a39ecbaa7ed9",
+        "partitions": [
+          {
+            "name": "PREENCHIMENTO DE DADOS",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Fonte = Excel.Workbook(File.Contents(caminhoRede&\"Dados Projetos.xlsx\"), null, true),",
+                "    #\"PREENCHIMENTO DE DADOS1\" = Fonte{[Name=\"PREENCHIMENTO DE DADOS\"]}[Data],",
+                "    #\"Cabeçalhos Promovidos\" = Table.PromoteHeaders(#\"PREENCHIMENTO DE DADOS1\", [PromoteAllScalars=true])",
+                "in",
+                "    #\"Cabeçalhos Promovidos\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "DateTableTemplate_9f8e81f1-54c1-43f9-ac2b-8bacbb2ab124",
+        "annotations": [
+          {
+            "name": "__PBI_TemplateDateTable",
+            "value": "true"
+          },
+          {
+            "name": "DefaultItem",
+            "value": "DateHierarchy"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              }
+            ],
+            "dataCategory": "PaddedDateTableDates",
+            "dataType": "dateTime",
+            "formatString": "General Date",
+            "isHidden": true,
+            "isNameInferred": true,
+            "lineageTag": "f0a55122-48dd-4f52-a5c3-2547da858eb1",
+            "sourceColumn": "[Date]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Ano",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Year"
+              }
+            ],
+            "dataCategory": "Years",
+            "dataType": "int64",
+            "expression": "YEAR([Date])",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "77d1c0c9-51e3-4cab-93ff-1f18a236a429",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "MonthNo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "MonthNumber"
+              }
+            ],
+            "dataCategory": "MonthOfYear",
+            "dataType": "int64",
+            "expression": "MONTH([Date])",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "c29d31a2-2d6c-439b-a42c-44eb706eb52f",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Mês",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Month"
+              }
+            ],
+            "dataCategory": "Months",
+            "dataType": "string",
+            "expression": "FORMAT([Date], \"MMMM\")",
+            "isHidden": true,
+            "lineageTag": "e1db89d9-f0af-41bf-b808-73c823466718",
+            "sortByColumn": "MonthNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "QuarterNo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "QuarterNumber"
+              }
+            ],
+            "dataCategory": "QuarterOfYear",
+            "dataType": "int64",
+            "expression": "INT(([MonthNo] + 2) / 3)",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "509ac2b8-c8da-4bf4-826c-f5f38cfe68ed",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Trimestre",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Quarter"
+              }
+            ],
+            "dataCategory": "Quarters",
+            "dataType": "string",
+            "expression": "\"Trim \" & [QuarterNo]",
+            "isHidden": true,
+            "lineageTag": "e62a0af9-aa91-4938-a3de-4927c1f4eeb4",
+            "sortByColumn": "QuarterNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Dia",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Day"
+              }
+            ],
+            "dataCategory": "DayOfMonth",
+            "dataType": "int64",
+            "expression": "DAY([Date])",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "2af2c595-584a-447d-ae28-554f305cbf9e",
+            "summarizeBy": "none",
+            "type": "calculated"
+          }
+        ],
+        "hierarchies": [
+          {
+            "name": "Hierarquia de datas",
+            "annotations": [
+              {
+                "name": "TemplateId",
+                "value": "DateHierarchy"
+              }
+            ],
+            "levels": [
+              {
+                "name": "Ano",
+                "column": "Ano",
+                "lineageTag": "e57153e2-fbd3-4fa7-babd-f441fa6f9c6b",
+                "ordinal": 0
+              },
+              {
+                "name": "Trimestre",
+                "column": "Trimestre",
+                "lineageTag": "3bad5983-1d61-4728-8272-7d879a99d388",
+                "ordinal": 1
+              },
+              {
+                "name": "Mês",
+                "column": "Mês",
+                "lineageTag": "8e57b960-37b0-4ef4-ae2d-115372f6eda9",
+                "ordinal": 2
+              },
+              {
+                "name": "Dia",
+                "column": "Dia",
+                "lineageTag": "54a09739-7bbc-400c-8e0f-aec99de91e1a",
+                "ordinal": 3
+              }
+            ],
+            "lineageTag": "a49493e9-e9a5-47dd-abd0-20b7c8ec501a"
+          }
+        ],
+        "isHidden": true,
+        "isPrivate": true,
+        "lineageTag": "6cf7a6fa-bba7-4a54-b8de-156a1191f3fb",
+        "partitions": [
+          {
+            "name": "DateTableTemplate_9f8e81f1-54c1-43f9-ac2b-8bacbb2ab124",
+            "mode": "import",
+            "source": {
+              "expression": "Calendar(Date(2015,1,1), Date(2015,1,1))",
+              "type": "calculated"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
