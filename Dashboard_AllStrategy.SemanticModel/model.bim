@@ -57,16 +57,8 @@
     ],
     "relationships": [
       {
-        "name": "997afe1b-0c20-424f-895c-0070b9624084",
-        "fromColumn": "DATA ENTRADA",
-        "fromTable": "PREENCHIMENTO DE DADOS",
-        "joinOnDateBehavior": "datePartOnly",
-        "toColumn": "Date",
-        "toTable": "LocalDateTable_1c7cc058-b933-4acf-9107-affb3a86eb2b"
-      },
-      {
         "name": "8bb96819-49c8-4faa-aa99-68c7d69fa7b9",
-        "fromColumn": "DATA ALINHAMENTO",
+        "fromColumn": "Data_Alinhamento",
         "fromTable": "PREENCHIMENTO DE DADOS",
         "joinOnDateBehavior": "datePartOnly",
         "toColumn": "Date",
@@ -166,36 +158,7 @@
             "summarizeBy": "none"
           },
           {
-            "name": "DATA ENTRADA",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              },
-              {
-                "name": "UnderlyingDateTimeDataType",
-                "value": "Date"
-              }
-            ],
-            "dataType": "dateTime",
-            "formatString": "Long Date",
-            "lineageTag": "6ed37e72-451b-42ac-9e85-aec3dda53604",
-            "sourceColumn": "DATA ENTRADA",
-            "summarizeBy": "none",
-            "variations": [
-              {
-                "name": "Variation",
-                "defaultHierarchy": {
-                  "hierarchy": "Hierarquia de datas",
-                  "table": "LocalDateTable_1c7cc058-b933-4acf-9107-affb3a86eb2b"
-                },
-                "isDefault": true,
-                "relationship": "997afe1b-0c20-424f-895c-0070b9624084"
-              }
-            ]
-          },
-          {
-            "name": "DATA ALINHAMENTO",
+            "name": "Data_Alinhamento",
             "annotations": [
               {
                 "name": "SummarizationSetBy",
@@ -209,7 +172,7 @@
             "dataType": "dateTime",
             "formatString": "Long Date",
             "lineageTag": "ee11a128-23b3-4fa1-b193-1d5f5043dfbc",
-            "sourceColumn": "DATA ALINHAMENTO",
+            "sourceColumn": "Data_Alinhamento",
             "summarizeBy": "none",
             "variations": [
               {
@@ -509,7 +472,7 @@
             "summarizeBy": "sum"
           },
           {
-            "name": "DATA ENTRADA CORRIGIDA",
+            "name": "Data_Entrada",
             "annotations": [
               {
                 "name": "SummarizationSetBy",
@@ -518,7 +481,59 @@
             ],
             "dataType": "string",
             "lineageTag": "5a1dd4b1-a343-4794-8f7e-5549512a53fa",
-            "sourceColumn": "DATA ENTRADA CORRIGIDA",
+            "sourceColumn": "Data_Entrada",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Prazo Alinhamento",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "05086b31-fa45-4d41-bf71-165aefc19414",
+            "sourceColumn": "Prazo Alinhamento",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Prazo Kickoff",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "243a82ba-12d1-42c3-b0d2-e1688162b5f4",
+            "sourceColumn": "Prazo Kickoff",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Prazo Fase 1",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "29702d8f-4f3d-4572-932b-982d74b89bd8",
+            "sourceColumn": "Prazo Fase 1",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Prazo Fase 2",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "2f8bbe61-ac26-489a-a2fc-b85bda56fd63",
+            "sourceColumn": "Prazo Fase 2",
             "summarizeBy": "none"
           }
         ],
@@ -536,11 +551,32 @@
                 "    #\"Índice Adicionado\" = Table.AddIndexColumn(#\"Cabeçalhos Promovidos\", \"ID_PROJETO\", 1, 1, Int64.Type),",
                 "    // Tipagem de Dados",
                 "    #\"Tipo Alterado\" = Table.TransformColumnTypes(#\"Índice Adicionado\",{{\"DATA ENTRADA\", type date}, {\"DATA ALINHAMENTO\", type date}, {\"PRAZO FORMALIZAÇÃO#(lf)ALINHAMENTO\", type date}, {\"DATA KICKOFF\", type date}, {\"DATA ENCERRAMENTO FASE 1\", type date}, {\"PRAZO FORMALIZAÇÃO#(lf)MARCO 1\", type date}, {\"DATA FORMALIZAÇÃO#(lf)MARCO 1\", type date}, {\"DATA ENCERRAMENTO FASE 2\", type date}, {\"DATA FORMALIZAÇÃO#(lf)MARCO 2\", type date}, {\"DATA ENTREGA PROJETO\", type date}, {\"FORMALIZAÇÃO MARCO 2\", type text}, {\"COMUNICAÇÃO PADRÃO MARCO 2\", type text}, {\"NOME\", type text}}),",
-                "    #\"Coluna Status Adicionada\" = Table.AddColumn(#\"Tipo Alterado\", \"Status\", each if [DATA ALINHAMENTO] = null then \"Alinhamento\" else if [DATA KICKOFF] = null then \"Kickoff\" else if [DATA ENCERRAMENTO FASE 1] = null then \"Fase 1\" else if [DATA ENCERRAMENTO FASE 2] = null then \"Fase 2\" else if [DATA ENTREGA PROJETO] = null then \"Fase Final\" else if [DATA ENTREGA PROJETO] <> null then \"Finalizado\" else \"N/A\"),",
+                "    #\"Coluna Status Adicionada\" = Table.AddColumn(#\"Tipo Alterado\", \"Status\", each if [DATA ALINHAMENTO] = null then \"Alinhamento\" else if [DATA KICKOFF] = null then \"Kickoff\" else if [DATA ENCERRAMENTO FASE 1] = null then \"Fase 1\" else if [DATA ENCERRAMENTO FASE 2] = null then \"Fase 2\" else \"Finalizado\"),",
                 "    // Se data entrada é nulo preencher com data alinhamento",
-                "    #\"Coluna Data Entrada Corrigida Adicionada\" = Table.AddColumn(#\"Coluna Status Adicionada\", \"DATA ENTRADA CORRIGIDA\", each if [DATA ENTRADA] = null then [DATA ALINHAMENTO] else [DATA ENTRADA])",
+                "    #\"Coluna Data Entrada Corrigida Adicionada\" = Table.AddColumn(#\"Coluna Status Adicionada\", \"DATA ENTRADA CORRIGIDA\", each if [DATA ENTRADA] = null then [DATA ALINHAMENTO] else [DATA ENTRADA]),",
+                "    #\"Colunas Data Entrada Antiga Removida\" = Table.RemoveColumns(#\"Coluna Data Entrada Corrigida Adicionada\",{\"DATA ENTRADA\"}),",
+                "    #\"Colunas Renomeadas\" = Table.RenameColumns(#\"Colunas Data Entrada Antiga Removida\",{{\"DATA ENTRADA CORRIGIDA\", \"Data_Entrada\"}, {\"DATA ALINHAMENTO\", \"Data_Alinhamento\"}}),",
+                "    #\"Prazo Alinhamento\" = Table.AddColumn(#\"Colunas Renomeadas\", \"Prazo Alinhamento\", each if [Data_Alinhamento] = null then",
+                "    if DateTime.LocalNow() > DateTime.From(Date.AddDays([Data_Entrada], 15)) then \"Fora do Prazo\" else \"Dentro do Prazo\"",
+                "else",
+                "    if [Data_Alinhamento] > Date.AddDays([Data_Entrada], 15) then \"Fora do Prazo\" else \"Dentro do Prazo\"),",
+                "    #\"Prazo Kickoff\" = Table.AddColumn(#\"Prazo Alinhamento\", \"Prazo Kickoff\", each if [Data_Alinhamento] = null then \"Status Não Iniciado\"",
+                "else if [DATA KICKOFF] = null then",
+                "    if DateTime.Date(DateTime.LocalNow()) > Date.AddDays([Data_Alinhamento], 10) then \"Fora do Prazo\" else \"Dentro do Prazo\"",
+                "else",
+                "    if [DATA KICKOFF] > Date.AddDays([Data_Alinhamento], 10) then \"Fora do Prazo\" else \"Dentro do Prazo\"),",
+                "    #\"Prazo Fase 1\" = Table.AddColumn(#\"Prazo Kickoff\", \"Prazo Fase 1\", each if [DATA KICKOFF] = null then \"Status Não Iniciado\"",
+                "else if [DATA ENCERRAMENTO FASE 1] = null then",
+                "    if DateTime.Date(DateTime.LocalNow()) > Date.AddDays([DATA KICKOFF], 45) then \"Fora do Prazo\" else \"Dentro do Prazo\"",
+                "else",
+                "    if [DATA ENCERRAMENTO FASE 1] > Date.AddDays([DATA KICKOFF], 45) then \"Fora do Prazo\" else \"Dentro do Prazo\"),",
+                "    #\"Prazo Fase 2\" = Table.AddColumn(#\"Prazo Fase 1\", \"Prazo Fase 2\", each if [DATA ENCERRAMENTO FASE 1] = null then \"Status Não Iniciado\"",
+                "else if [DATA ENCERRAMENTO FASE 2] = null then",
+                "    if DateTime.Date(DateTime.LocalNow()) > Date.AddDays([DATA ENCERRAMENTO FASE 1], 120) then \"Fora do Prazo\" else \"Dentro do Prazo\"",
+                "else",
+                "    if [DATA ENCERRAMENTO FASE 2] > Date.AddDays([DATA ENCERRAMENTO FASE 1], 120) then \"Fora do Prazo\" else \"Dentro do Prazo\")",
                 "in",
-                "    #\"Coluna Data Entrada Corrigida Adicionada\""
+                "    #\"Prazo Fase 2\""
               ],
               "type": "m"
             }
@@ -758,212 +794,6 @@
         ]
       },
       {
-        "name": "LocalDateTable_1c7cc058-b933-4acf-9107-affb3a86eb2b",
-        "annotations": [
-          {
-            "name": "__PBI_LocalDateTable",
-            "value": "true"
-          }
-        ],
-        "columns": [
-          {
-            "name": "Date",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "User"
-              }
-            ],
-            "dataCategory": "PaddedDateTableDates",
-            "dataType": "dateTime",
-            "formatString": "General Date",
-            "isHidden": true,
-            "isNameInferred": true,
-            "lineageTag": "d21b5b89-772e-4895-8f51-98c3562a8c23",
-            "sourceColumn": "[Date]",
-            "summarizeBy": "none",
-            "type": "calculatedTableColumn"
-          },
-          {
-            "name": "Ano",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "User"
-              },
-              {
-                "name": "TemplateId",
-                "value": "Year"
-              }
-            ],
-            "dataCategory": "Years",
-            "dataType": "int64",
-            "expression": "YEAR([Date])",
-            "formatString": "0",
-            "isHidden": true,
-            "lineageTag": "24427663-1b36-450f-ae1e-a659b27b3ed7",
-            "summarizeBy": "none",
-            "type": "calculated"
-          },
-          {
-            "name": "MonthNo",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "User"
-              },
-              {
-                "name": "TemplateId",
-                "value": "MonthNumber"
-              }
-            ],
-            "dataCategory": "MonthOfYear",
-            "dataType": "int64",
-            "expression": "MONTH([Date])",
-            "formatString": "0",
-            "isHidden": true,
-            "lineageTag": "1264eb3a-4402-413e-9f4f-e8126fae61c9",
-            "summarizeBy": "none",
-            "type": "calculated"
-          },
-          {
-            "name": "Mês",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "User"
-              },
-              {
-                "name": "TemplateId",
-                "value": "Month"
-              }
-            ],
-            "dataCategory": "Months",
-            "dataType": "string",
-            "expression": "FORMAT([Date], \"MMMM\")",
-            "isHidden": true,
-            "lineageTag": "03927bf0-4040-43d5-bb5e-37aedf831185",
-            "sortByColumn": "MonthNo",
-            "summarizeBy": "none",
-            "type": "calculated"
-          },
-          {
-            "name": "QuarterNo",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "User"
-              },
-              {
-                "name": "TemplateId",
-                "value": "QuarterNumber"
-              }
-            ],
-            "dataCategory": "QuarterOfYear",
-            "dataType": "int64",
-            "expression": "INT(([MonthNo] + 2) / 3)",
-            "formatString": "0",
-            "isHidden": true,
-            "lineageTag": "f4ae07d6-10cb-409c-821d-50b1ff900ad1",
-            "summarizeBy": "none",
-            "type": "calculated"
-          },
-          {
-            "name": "Trimestre",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "User"
-              },
-              {
-                "name": "TemplateId",
-                "value": "Quarter"
-              }
-            ],
-            "dataCategory": "Quarters",
-            "dataType": "string",
-            "expression": "\"Trim \" & [QuarterNo]",
-            "isHidden": true,
-            "lineageTag": "bfe9b2a4-eea5-4f5e-b7f4-869e484f8a75",
-            "sortByColumn": "QuarterNo",
-            "summarizeBy": "none",
-            "type": "calculated"
-          },
-          {
-            "name": "Dia",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "User"
-              },
-              {
-                "name": "TemplateId",
-                "value": "Day"
-              }
-            ],
-            "dataCategory": "DayOfMonth",
-            "dataType": "int64",
-            "expression": "DAY([Date])",
-            "formatString": "0",
-            "isHidden": true,
-            "lineageTag": "fff8dffe-eae5-4389-b32e-b54a71f04456",
-            "summarizeBy": "none",
-            "type": "calculated"
-          }
-        ],
-        "hierarchies": [
-          {
-            "name": "Hierarquia de datas",
-            "annotations": [
-              {
-                "name": "TemplateId",
-                "value": "DateHierarchy"
-              }
-            ],
-            "levels": [
-              {
-                "name": "Ano",
-                "column": "Ano",
-                "lineageTag": "4ebb4e1e-3cce-45b9-a4ec-4a84a4e3eb73",
-                "ordinal": 0
-              },
-              {
-                "name": "Trimestre",
-                "column": "Trimestre",
-                "lineageTag": "267db162-2ee3-401a-9f26-1e19e8faf68f",
-                "ordinal": 1
-              },
-              {
-                "name": "Mês",
-                "column": "Mês",
-                "lineageTag": "30232d02-70bc-41c3-a212-a4dcf608f9bd",
-                "ordinal": 2
-              },
-              {
-                "name": "Dia",
-                "column": "Dia",
-                "lineageTag": "c93d4853-9cfc-4a9c-a324-7ccc80145d16",
-                "ordinal": 3
-              }
-            ],
-            "lineageTag": "cc371080-eba1-4cd9-8367-ef270612c6f7"
-          }
-        ],
-        "isHidden": true,
-        "lineageTag": "e3014886-776a-4a5d-814b-822a2c5dd4e3",
-        "partitions": [
-          {
-            "name": "LocalDateTable_1c7cc058-b933-4acf-9107-affb3a86eb2b",
-            "mode": "import",
-            "source": {
-              "expression": "Calendar(Date(Year(MIN('PREENCHIMENTO DE DADOS'[DATA ENTRADA])), 1, 1), Date(Year(MAX('PREENCHIMENTO DE DADOS'[DATA ENTRADA])), 12, 31))",
-              "type": "calculated"
-            }
-          }
-        ],
-        "showAsVariationsOnly": true
-      },
-      {
         "name": "LocalDateTable_9316987b-5133-4f85-9ab1-aeeb5c04258a",
         "annotations": [
           {
@@ -1162,7 +992,7 @@
             "name": "LocalDateTable_9316987b-5133-4f85-9ab1-aeeb5c04258a",
             "mode": "import",
             "source": {
-              "expression": "Calendar(Date(Year(MIN('PREENCHIMENTO DE DADOS'[DATA ALINHAMENTO])), 1, 1), Date(Year(MAX('PREENCHIMENTO DE DADOS'[DATA ALINHAMENTO])), 12, 31))",
+              "expression": "Calendar(Date(Year(MIN('PREENCHIMENTO DE DADOS'[Data_Alinhamento])), 1, 1), Date(Year(MAX('PREENCHIMENTO DE DADOS'[Data_Alinhamento])), 12, 31))",
               "type": "calculated"
             }
           }
