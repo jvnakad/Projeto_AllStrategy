@@ -535,6 +535,19 @@
             "lineageTag": "2f8bbe61-ac26-489a-a2fc-b85bda56fd63",
             "sourceColumn": "Prazo Fase 2",
             "summarizeBy": "none"
+          },
+          {
+            "name": "Prazo Atual",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "2989f2cb-9d5e-41a3-b556-15867666e31d",
+            "sourceColumn": "Prazo Atual",
+            "summarizeBy": "none"
           }
         ],
         "lineageTag": "8d00d64e-df4d-4062-a8c1-a39ecbaa7ed9",
@@ -551,7 +564,7 @@
                 "    #\"Índice Adicionado\" = Table.AddIndexColumn(#\"Cabeçalhos Promovidos\", \"ID_PROJETO\", 1, 1, Int64.Type),",
                 "    // Tipagem de Dados",
                 "    #\"Tipo Alterado\" = Table.TransformColumnTypes(#\"Índice Adicionado\",{{\"DATA ENTRADA\", type date}, {\"DATA ALINHAMENTO\", type date}, {\"PRAZO FORMALIZAÇÃO#(lf)ALINHAMENTO\", type date}, {\"DATA KICKOFF\", type date}, {\"DATA ENCERRAMENTO FASE 1\", type date}, {\"PRAZO FORMALIZAÇÃO#(lf)MARCO 1\", type date}, {\"DATA FORMALIZAÇÃO#(lf)MARCO 1\", type date}, {\"DATA ENCERRAMENTO FASE 2\", type date}, {\"DATA FORMALIZAÇÃO#(lf)MARCO 2\", type date}, {\"DATA ENTREGA PROJETO\", type date}, {\"FORMALIZAÇÃO MARCO 2\", type text}, {\"COMUNICAÇÃO PADRÃO MARCO 2\", type text}, {\"NOME\", type text}}),",
-                "    #\"Coluna Status Adicionada\" = Table.AddColumn(#\"Tipo Alterado\", \"Status\", each if [DATA ALINHAMENTO] = null then \"Alinhamento\" else if [DATA KICKOFF] = null then \"Kickoff\" else if [DATA ENCERRAMENTO FASE 1] = null then \"Fase 1\" else if [DATA ENCERRAMENTO FASE 2] = null then \"Fase 2\" else \"Finalizado\"),",
+                "    #\"Coluna Status Adicionada\" = Table.AddColumn(#\"Tipo Alterado\", \"Status\", each if [DATA ALINHAMENTO] = null then \"Alinhamento\" else if [DATA KICKOFF] = null then \"Kickoff\" else if [DATA ENCERRAMENTO FASE 1] = null then \"Fase 1\" else if [DATA ENCERRAMENTO FASE 2] = null then \"Fase 2\" else \"Entregue\"),",
                 "    // Se data entrada é nulo preencher com data alinhamento",
                 "    #\"Coluna Data Entrada Corrigida Adicionada\" = Table.AddColumn(#\"Coluna Status Adicionada\", \"DATA ENTRADA CORRIGIDA\", each if [DATA ENTRADA] = null then [DATA ALINHAMENTO] else [DATA ENTRADA]),",
                 "    #\"Colunas Data Entrada Antiga Removida\" = Table.RemoveColumns(#\"Coluna Data Entrada Corrigida Adicionada\",{\"DATA ENTRADA\"}),",
@@ -574,9 +587,22 @@
                 "else if [DATA ENCERRAMENTO FASE 2] = null then",
                 "    if DateTime.Date(DateTime.LocalNow()) > Date.AddDays([DATA ENCERRAMENTO FASE 1], 120) then \"Fora do Prazo\" else \"Dentro do Prazo\"",
                 "else",
-                "    if [DATA ENCERRAMENTO FASE 2] > Date.AddDays([DATA ENCERRAMENTO FASE 1], 120) then \"Fora do Prazo\" else \"Dentro do Prazo\")",
+                "    if [DATA ENCERRAMENTO FASE 2] > Date.AddDays([DATA ENCERRAMENTO FASE 1], 120) then \"Fora do Prazo\" else \"Dentro do Prazo\"),",
+                "    #\"Prazo Atual\" = Table.AddColumn(#\"Prazo Fase 2\", \"Prazo Atual\", each let",
+                "    DataAtual = DateTime.Date(DateTime.LocalNow()),",
+                "    ",
+                "    // Define o prazo baseado no status atual",
+                "    PrazoAtual = ",
+                "        if [Status] = \"Alinhamento\" then [Prazo Alinhamento]",
+                "        else if [Status] = \"Kickoff\" then [Prazo Kickoff]",
+                "        else if [Status] = \"Fase 1\" then [Prazo Fase 1]",
+                "        else if [Status] = \"Fase 2\" then [Prazo Fase 2]",
+                "        else if [Status] = \"Entregue\" then [Prazo Fase 2]",
+                "        else null",
                 "in",
-                "    #\"Prazo Fase 2\""
+                "   PrazoAtual)",
+                "in",
+                "    #\"Prazo Atual\""
               ],
               "type": "m"
             }

@@ -36,22 +36,22 @@
           "z": 0.00
         },
         {
-          "config": "{\"name\":\"10c95608611d4dc8c868\",\"layouts\":[{\"id\":0,\"position\":{\"x\":986.2613981762919,\"y\":0,\"z\":1,\"width\":236.35258358662614,\"height\":213.00911854103344,\"tabOrder\":1}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"PREENCHIMENTO DE DADOS.Status\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"p\",\"Entity\":\"PREENCHIMENTO DE DADOS\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"Status\"},\"Name\":\"PREENCHIMENTO DE DADOS.Status\",\"NativeReferenceName\":\"Status\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Basic'\"}}}}}],\"general\":[{\"properties\":{}}]}}}",
-          "filters": "[]",
-          "height": 213.01,
-          "width": 236.35,
-          "x": 986.26,
-          "y": 0.00,
-          "z": 1.00
-        },
-        {
-          "config": "{\"name\":\"9e9620bebb9c4009ce15\",\"layouts\":[{\"id\":0,\"position\":{\"x\":246.0790273556231,\"y\":0,\"z\":2,\"width\":711.0030395136779,\"height\":213.00911854103344,\"tabOrder\":2}}],\"singleVisual\":{\"visualType\":\"columnChart\",\"projections\":{\"Category\":[{\"queryRef\":\"PREENCHIMENTO DE DADOS.Status\",\"active\":true}],\"Y\":[{\"queryRef\":\"CountNonNull(PREENCHIMENTO DE DADOS.Status)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"p\",\"Entity\":\"PREENCHIMENTO DE DADOS\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"Status\"},\"Name\":\"PREENCHIMENTO DE DADOS.Status\",\"NativeReferenceName\":\"Status\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"Status\"}},\"Function\":5},\"Name\":\"CountNonNull(PREENCHIMENTO DE DADOS.Status)\",\"NativeReferenceName\":\"Contagem de Status\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"Status\"}},\"Function\":5}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "config": "{\"name\":\"9e9620bebb9c4009ce15\",\"layouts\":[{\"id\":0,\"position\":{\"x\":246.0790273556231,\"y\":0,\"z\":2,\"width\":711.0030395136779,\"height\":213.00911854103344,\"tabOrder\":2}}],\"singleVisual\":{\"visualType\":\"clusteredBarChart\",\"projections\":{\"Category\":[{\"queryRef\":\"PREENCHIMENTO DE DADOS.Status\",\"active\":true}],\"Y\":[{\"queryRef\":\"CountNonNull(PREENCHIMENTO DE DADOS.Status)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"p\",\"Entity\":\"PREENCHIMENTO DE DADOS\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"Status\"},\"Name\":\"PREENCHIMENTO DE DADOS.Status\",\"NativeReferenceName\":\"Status\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"Status\"}},\"Function\":5},\"Name\":\"CountNonNull(PREENCHIMENTO DE DADOS.Status)\",\"NativeReferenceName\":\"Contagem de Status\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"Status\"}},\"Function\":5}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
           "filters": "[]",
           "height": 213.01,
           "width": 711.00,
           "x": 246.08,
           "y": 0.00,
           "z": 2.00
+        },
+        {
+          "config": "{\"name\":\"b49ca933e795842aaad3\",\"layouts\":[{\"id\":0,\"position\":{\"x\":9.72644376899696,\"y\":271.3677811550152,\"z\":3,\"width\":663.3434650455928,\"height\":213.00911854103344,\"tabOrder\":3}}],\"singleVisual\":{\"visualType\":\"donutChart\",\"projections\":{\"Category\":[{\"queryRef\":\"PREENCHIMENTO DE DADOS.Prazo Atual\",\"active\":true}],\"Y\":[{\"queryRef\":\"CountNonNull(PREENCHIMENTO DE DADOS.Prazo Atual)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"p\",\"Entity\":\"PREENCHIMENTO DE DADOS\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"Prazo Atual\"},\"Name\":\"PREENCHIMENTO DE DADOS.Prazo Atual\",\"NativeReferenceName\":\"Prazo Atual\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"Prazo Atual\"}},\"Function\":5},\"Name\":\"CountNonNull(PREENCHIMENTO DE DADOS.Prazo Atual)\",\"NativeReferenceName\":\"Contagem de Prazo Atual\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"Prazo Atual\"}},\"Function\":5}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 213.01,
+          "width": 663.34,
+          "x": 9.73,
+          "y": 271.37,
+          "z": 3.00
         }
       ],
       "width": 1280.00
