@@ -493,6 +493,33 @@
             "lineageTag": "296addb3-85cf-4e53-aec8-18acf6c5294e",
             "sourceColumn": "Status",
             "summarizeBy": "none"
+          },
+          {
+            "name": "ID_PROJETO",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "98ba1211-38e6-487f-81db-07a5f59c80a9",
+            "sourceColumn": "ID_PROJETO",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "DATA ENTRADA CORRIGIDA",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "5a1dd4b1-a343-4794-8f7e-5549512a53fa",
+            "sourceColumn": "DATA ENTRADA CORRIGIDA",
+            "summarizeBy": "none"
           }
         ],
         "lineageTag": "8d00d64e-df4d-4062-a8c1-a39ecbaa7ed9",
@@ -506,11 +533,14 @@
                 "    Fonte = Excel.Workbook(File.Contents(caminhoRede&\"Dados Projetos.xlsx\"), null, true),",
                 "    #\"PREENCHIMENTO DE DADOS1\" = Fonte{[Name=\"PREENCHIMENTO DE DADOS\"]}[Data],",
                 "    #\"Cabeçalhos Promovidos\" = Table.PromoteHeaders(#\"PREENCHIMENTO DE DADOS1\", [PromoteAllScalars=true]),",
+                "    #\"Índice Adicionado\" = Table.AddIndexColumn(#\"Cabeçalhos Promovidos\", \"ID_PROJETO\", 1, 1, Int64.Type),",
                 "    // Tipagem de Dados",
-                "    #\"Tipo Alterado\" = Table.TransformColumnTypes(#\"Cabeçalhos Promovidos\",{{\"DATA ENTRADA\", type date}, {\"DATA ALINHAMENTO\", type date}, {\"PRAZO FORMALIZAÇÃO#(lf)ALINHAMENTO\", type date}, {\"DATA KICKOFF\", type date}, {\"DATA ENCERRAMENTO FASE 1\", type date}, {\"PRAZO FORMALIZAÇÃO#(lf)MARCO 1\", type date}, {\"DATA FORMALIZAÇÃO#(lf)MARCO 1\", type date}, {\"DATA ENCERRAMENTO FASE 2\", type date}, {\"DATA FORMALIZAÇÃO#(lf)MARCO 2\", type date}, {\"DATA ENTREGA PROJETO\", type date}, {\"FORMALIZAÇÃO MARCO 2\", type text}, {\"COMUNICAÇÃO PADRÃO MARCO 2\", type text}, {\"NOME\", type text}}),",
-                "    #\"Coluna Status Adicionada\" = Table.AddColumn(#\"Tipo Alterado\", \"Status\", each if [DATA ALINHAMENTO] = null then \"Alinhamento\" else if [DATA KICKOFF] = null then \"Kickoff\" else if [DATA ENCERRAMENTO FASE 1] = null then \"Fase 1\" else if [DATA ENCERRAMENTO FASE 2] = null then \"Fase 2\" else if [DATA ENTREGA PROJETO] = null then \"Fase Final\" else if [DATA ENTREGA PROJETO] <> null then \"Finalizado\" else \"N/A\")",
+                "    #\"Tipo Alterado\" = Table.TransformColumnTypes(#\"Índice Adicionado\",{{\"DATA ENTRADA\", type date}, {\"DATA ALINHAMENTO\", type date}, {\"PRAZO FORMALIZAÇÃO#(lf)ALINHAMENTO\", type date}, {\"DATA KICKOFF\", type date}, {\"DATA ENCERRAMENTO FASE 1\", type date}, {\"PRAZO FORMALIZAÇÃO#(lf)MARCO 1\", type date}, {\"DATA FORMALIZAÇÃO#(lf)MARCO 1\", type date}, {\"DATA ENCERRAMENTO FASE 2\", type date}, {\"DATA FORMALIZAÇÃO#(lf)MARCO 2\", type date}, {\"DATA ENTREGA PROJETO\", type date}, {\"FORMALIZAÇÃO MARCO 2\", type text}, {\"COMUNICAÇÃO PADRÃO MARCO 2\", type text}, {\"NOME\", type text}}),",
+                "    #\"Coluna Status Adicionada\" = Table.AddColumn(#\"Tipo Alterado\", \"Status\", each if [DATA ALINHAMENTO] = null then \"Alinhamento\" else if [DATA KICKOFF] = null then \"Kickoff\" else if [DATA ENCERRAMENTO FASE 1] = null then \"Fase 1\" else if [DATA ENCERRAMENTO FASE 2] = null then \"Fase 2\" else if [DATA ENTREGA PROJETO] = null then \"Fase Final\" else if [DATA ENTREGA PROJETO] <> null then \"Finalizado\" else \"N/A\"),",
+                "    // Se data entrada é nulo preencher com data alinhamento",
+                "    #\"Coluna Data Entrada Corrigida Adicionada\" = Table.AddColumn(#\"Coluna Status Adicionada\", \"DATA ENTRADA CORRIGIDA\", each if [DATA ENTRADA] = null then [DATA ALINHAMENTO] else [DATA ENTRADA])",
                 "in",
-                "    #\"Coluna Status Adicionada\""
+                "    #\"Coluna Data Entrada Corrigida Adicionada\""
               ],
               "type": "m"
             }
