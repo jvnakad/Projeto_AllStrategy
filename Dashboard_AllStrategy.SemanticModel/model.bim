@@ -4,7 +4,7 @@
     "annotations": [
       {
         "name": "PBI_QueryOrder",
-        "value": "[\"PREENCHIMENTO DE DADOS\",\"caminhoRede\"]"
+        "value": "[\"Base_Projetos\",\"caminhoRede\"]"
       },
       {
         "name": "__PBI_TimeIntelligenceEnabled",
@@ -59,7 +59,7 @@
       {
         "name": "8bb96819-49c8-4faa-aa99-68c7d69fa7b9",
         "fromColumn": "Data_Alinhamento",
-        "fromTable": "PREENCHIMENTO DE DADOS",
+        "fromTable": "Base_Projetos",
         "joinOnDateBehavior": "datePartOnly",
         "toColumn": "Date",
         "toTable": "LocalDateTable_9316987b-5133-4f85-9ab1-aeeb5c04258a"
@@ -67,7 +67,7 @@
       {
         "name": "91d8ce19-e1b9-41c7-b0ca-af515d511ba5",
         "fromColumn": "PRAZO FORMALIZAÇÃOALINHAMENTO",
-        "fromTable": "PREENCHIMENTO DE DADOS",
+        "fromTable": "Base_Projetos",
         "joinOnDateBehavior": "datePartOnly",
         "toColumn": "Date",
         "toTable": "LocalDateTable_0ca937b9-36da-4a43-b027-1d8c38ea09b2"
@@ -75,7 +75,7 @@
       {
         "name": "46cb71e2-a38b-4572-84a5-5f854132cee6",
         "fromColumn": "DATA KICKOFF",
-        "fromTable": "PREENCHIMENTO DE DADOS",
+        "fromTable": "Base_Projetos",
         "joinOnDateBehavior": "datePartOnly",
         "toColumn": "Date",
         "toTable": "LocalDateTable_4ce0d21a-54e7-438a-a981-03f1d312f0b0"
@@ -83,7 +83,7 @@
       {
         "name": "ba2aa78f-385e-471c-a63e-1467e62c1eeb",
         "fromColumn": "DATA ENCERRAMENTO FASE 1",
-        "fromTable": "PREENCHIMENTO DE DADOS",
+        "fromTable": "Base_Projetos",
         "joinOnDateBehavior": "datePartOnly",
         "toColumn": "Date",
         "toTable": "LocalDateTable_87c3a682-b11a-4aae-b7d4-f7e5f73ac1b7"
@@ -91,7 +91,7 @@
       {
         "name": "0489eaaf-595c-4bd9-b3ab-babb991e8e07",
         "fromColumn": "PRAZO FORMALIZAÇÃOMARCO 1",
-        "fromTable": "PREENCHIMENTO DE DADOS",
+        "fromTable": "Base_Projetos",
         "joinOnDateBehavior": "datePartOnly",
         "toColumn": "Date",
         "toTable": "LocalDateTable_bbfc69f5-5240-433c-98f6-363be2700264"
@@ -99,7 +99,7 @@
       {
         "name": "a7c4ea86-f358-43b4-807e-469d8d735449",
         "fromColumn": "DATA FORMALIZAÇÃOMARCO 1",
-        "fromTable": "PREENCHIMENTO DE DADOS",
+        "fromTable": "Base_Projetos",
         "joinOnDateBehavior": "datePartOnly",
         "toColumn": "Date",
         "toTable": "LocalDateTable_b23470ae-9b95-4f6a-b384-4c1ec79e5d8c"
@@ -107,7 +107,7 @@
       {
         "name": "0855fe38-1d59-4425-8e02-e85f45354521",
         "fromColumn": "DATA ENCERRAMENTO FASE 2",
-        "fromTable": "PREENCHIMENTO DE DADOS",
+        "fromTable": "Base_Projetos",
         "joinOnDateBehavior": "datePartOnly",
         "toColumn": "Date",
         "toTable": "LocalDateTable_1eab7015-13e8-4b80-8988-062dce6ea26c"
@@ -115,7 +115,7 @@
       {
         "name": "5b21dd34-84a5-4944-b939-97a80423f2fd",
         "fromColumn": "DATA FORMALIZAÇÃOMARCO 2",
-        "fromTable": "PREENCHIMENTO DE DADOS",
+        "fromTable": "Base_Projetos",
         "joinOnDateBehavior": "datePartOnly",
         "toColumn": "Date",
         "toTable": "LocalDateTable_95382c1f-d528-4162-84c6-f79744398dd3"
@@ -123,16 +123,24 @@
       {
         "name": "0e61f37d-ee0d-4c60-a8f5-e8b7bf900c4e",
         "fromColumn": "DATA ENTREGA PROJETO",
-        "fromTable": "PREENCHIMENTO DE DADOS",
+        "fromTable": "Base_Projetos",
         "joinOnDateBehavior": "datePartOnly",
         "toColumn": "Date",
         "toTable": "LocalDateTable_02078865-a2ae-417d-890c-6ef8ce62ab6a"
+      },
+      {
+        "name": "11a97342-fab1-4fc1-8eda-76eb0bbe24c2",
+        "fromColumn": "Data_Entrada",
+        "fromTable": "Base_Projetos",
+        "joinOnDateBehavior": "datePartOnly",
+        "toColumn": "Date",
+        "toTable": "LocalDateTable_6cd2eb1c-3199-4b46-8367-36efa5044e84"
       }
     ],
     "sourceQueryCulture": "pt-BR",
     "tables": [
       {
-        "name": "PREENCHIMENTO DE DADOS",
+        "name": "Base_Projetos",
         "annotations": [
           {
             "name": "PBI_NavigationStepName",
@@ -477,12 +485,28 @@
               {
                 "name": "SummarizationSetBy",
                 "value": "Automatic"
+              },
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Date"
               }
             ],
-            "dataType": "string",
+            "dataType": "dateTime",
+            "formatString": "Long Date",
             "lineageTag": "5a1dd4b1-a343-4794-8f7e-5549512a53fa",
             "sourceColumn": "Data_Entrada",
-            "summarizeBy": "none"
+            "summarizeBy": "none",
+            "variations": [
+              {
+                "name": "Variation",
+                "defaultHierarchy": {
+                  "hierarchy": "Hierarquia de datas",
+                  "table": "LocalDateTable_6cd2eb1c-3199-4b46-8367-36efa5044e84"
+                },
+                "isDefault": true,
+                "relationship": "11a97342-fab1-4fc1-8eda-76eb0bbe24c2"
+              }
+            ]
           },
           {
             "name": "Prazo Alinhamento",
@@ -548,12 +572,91 @@
             "lineageTag": "2989f2cb-9d5e-41a3-b556-15867666e31d",
             "sourceColumn": "Prazo Atual",
             "summarizeBy": "none"
+          },
+          {
+            "name": "AnoMês",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "expression": [
+              "FORMAT('Base_Projetos'[Data_Entrada], \"YYYYMM\")",
+              ""
+            ],
+            "isDataTypeInferred": true,
+            "lineageTag": "13e917c5-c60f-4309-926a-6feb44941924",
+            "summarizeBy": "none",
+            "type": "calculated"
           }
         ],
         "lineageTag": "8d00d64e-df4d-4062-a8c1-a39ecbaa7ed9",
+        "measures": [
+          {
+            "name": "MédiaEntradasPorMês",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              "AVERAGEX(",
+              "    SUMMARIZE(",
+              "        'Base_Projetos',",
+              "        'Base_Projetos'[Data_Entrada],",
+              "        \"AnoMês\", FORMAT('Base_Projetos'[Data_Entrada], \"YYYYMM\"),",
+              "        \"ContagemEntradas\", COUNTROWS('Base_Projetos')",
+              "    ),",
+              "    [ContagemEntradas]",
+              ")",
+              ""
+            ],
+            "lineageTag": "642ad9ad-c2aa-428c-93a1-f783512b467a"
+          },
+          {
+            "name": "ProjetosPorMês",
+            "expression": "COUNTROWS('Base_Projetos')",
+            "formatString": "0",
+            "lineageTag": "5711e1b5-c9e7-4e07-924f-e1dbdb45b06f"
+          },
+          {
+            "name": "EvoluçãoMensal",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              "DIVIDE(",
+              "    (Base_Projetos[ProjetosPorMês] - CALCULATE(Base_Projetos[ProjetosPorMês], PREVIOUSMONTH('Base_Projetos'[Data_Entrada]))),",
+              "    CALCULATE(Base_Projetos[ProjetosPorMês], PREVIOUSMONTH('Base_Projetos'[Data_Entrada])),",
+              "    0",
+              ")",
+              ""
+            ],
+            "lineageTag": "5f7b065a-c276-4795-bfc3-b798a7e80d84"
+          },
+          {
+            "name": "TotalProjeto LM",
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    Base_Projetos[ProjetosPorMês],",
+              "    DATEADD(Base_Projetos[AnoMês], -1, MONTH))"
+            ],
+            "formatString": "0",
+            "lineageTag": "53220b65-fc42-4b5e-a1f6-2dbfe3ba6688"
+          }
+        ],
         "partitions": [
           {
-            "name": "PREENCHIMENTO DE DADOS",
+            "name": "Base_Projetos",
             "mode": "import",
             "source": {
               "expression": [
@@ -600,9 +703,11 @@
                 "        else if [Status] = \"Entregue\" then [Prazo Fase 2]",
                 "        else null",
                 "in",
-                "   PrazoAtual)",
+                "   PrazoAtual),",
+                "    #\"Colunas Reordenadas\" = Table.ReorderColumns(#\"Prazo Atual\",{\"ID_PROJETO\", \"NOME\", \"Data_Entrada\", \"Data_Alinhamento\", \"PRAZO FORMALIZAÇÃO#(lf)ALINHAMENTO\", \"DATA KICKOFF\", \"DATA ENCERRAMENTO FASE 1\", \"PRAZO FORMALIZAÇÃO#(lf)MARCO 1\", \"DATA FORMALIZAÇÃO#(lf)MARCO 1\", \"DATA ENCERRAMENTO FASE 2\", \"DATA FORMALIZAÇÃO#(lf)MARCO 2\", \"FORMALIZAÇÃO MARCO 2\", \"COMUNICAÇÃO PADRÃO MARCO 2\", \"DATA ENTREGA PROJETO\", \"Status\", \"Prazo Alinhamento\", \"Prazo Kickoff\", \"Prazo Fase 1\", \"Prazo Fase 2\", \"Prazo Atual\"}),",
+                "    #\"Tipo Alterado1\" = Table.TransformColumnTypes(#\"Colunas Reordenadas\",{{\"Data_Entrada\", type date}})",
                 "in",
-                "    #\"Prazo Atual\""
+                "    #\"Tipo Alterado1\""
               ],
               "type": "m"
             }
@@ -1018,7 +1123,7 @@
             "name": "LocalDateTable_9316987b-5133-4f85-9ab1-aeeb5c04258a",
             "mode": "import",
             "source": {
-              "expression": "Calendar(Date(Year(MIN('PREENCHIMENTO DE DADOS'[Data_Alinhamento])), 1, 1), Date(Year(MAX('PREENCHIMENTO DE DADOS'[Data_Alinhamento])), 12, 31))",
+              "expression": "Calendar(Date(Year(MIN('Base_Projetos'[Data_Alinhamento])), 1, 1), Date(Year(MAX('Base_Projetos'[Data_Alinhamento])), 12, 31))",
               "type": "calculated"
             }
           }
@@ -1224,7 +1329,7 @@
             "name": "LocalDateTable_0ca937b9-36da-4a43-b027-1d8c38ea09b2",
             "mode": "import",
             "source": {
-              "expression": "Calendar(Date(Year(MIN('PREENCHIMENTO DE DADOS'[PRAZO FORMALIZAÇÃOALINHAMENTO])), 1, 1), Date(Year(MAX('PREENCHIMENTO DE DADOS'[PRAZO FORMALIZAÇÃOALINHAMENTO])), 12, 31))",
+              "expression": "Calendar(Date(Year(MIN('Base_Projetos'[PRAZO FORMALIZAÇÃOALINHAMENTO])), 1, 1), Date(Year(MAX('Base_Projetos'[PRAZO FORMALIZAÇÃOALINHAMENTO])), 12, 31))",
               "type": "calculated"
             }
           }
@@ -1430,7 +1535,7 @@
             "name": "LocalDateTable_4ce0d21a-54e7-438a-a981-03f1d312f0b0",
             "mode": "import",
             "source": {
-              "expression": "Calendar(Date(Year(MIN('PREENCHIMENTO DE DADOS'[DATA KICKOFF])), 1, 1), Date(Year(MAX('PREENCHIMENTO DE DADOS'[DATA KICKOFF])), 12, 31))",
+              "expression": "Calendar(Date(Year(MIN('Base_Projetos'[DATA KICKOFF])), 1, 1), Date(Year(MAX('Base_Projetos'[DATA KICKOFF])), 12, 31))",
               "type": "calculated"
             }
           }
@@ -1636,7 +1741,7 @@
             "name": "LocalDateTable_87c3a682-b11a-4aae-b7d4-f7e5f73ac1b7",
             "mode": "import",
             "source": {
-              "expression": "Calendar(Date(Year(MIN('PREENCHIMENTO DE DADOS'[DATA ENCERRAMENTO FASE 1])), 1, 1), Date(Year(MAX('PREENCHIMENTO DE DADOS'[DATA ENCERRAMENTO FASE 1])), 12, 31))",
+              "expression": "Calendar(Date(Year(MIN('Base_Projetos'[DATA ENCERRAMENTO FASE 1])), 1, 1), Date(Year(MAX('Base_Projetos'[DATA ENCERRAMENTO FASE 1])), 12, 31))",
               "type": "calculated"
             }
           }
@@ -1842,7 +1947,7 @@
             "name": "LocalDateTable_bbfc69f5-5240-433c-98f6-363be2700264",
             "mode": "import",
             "source": {
-              "expression": "Calendar(Date(Year(MIN('PREENCHIMENTO DE DADOS'[PRAZO FORMALIZAÇÃOMARCO 1])), 1, 1), Date(Year(MAX('PREENCHIMENTO DE DADOS'[PRAZO FORMALIZAÇÃOMARCO 1])), 12, 31))",
+              "expression": "Calendar(Date(Year(MIN('Base_Projetos'[PRAZO FORMALIZAÇÃOMARCO 1])), 1, 1), Date(Year(MAX('Base_Projetos'[PRAZO FORMALIZAÇÃOMARCO 1])), 12, 31))",
               "type": "calculated"
             }
           }
@@ -2048,7 +2153,7 @@
             "name": "LocalDateTable_b23470ae-9b95-4f6a-b384-4c1ec79e5d8c",
             "mode": "import",
             "source": {
-              "expression": "Calendar(Date(Year(MIN('PREENCHIMENTO DE DADOS'[DATA FORMALIZAÇÃOMARCO 1])), 1, 1), Date(Year(MAX('PREENCHIMENTO DE DADOS'[DATA FORMALIZAÇÃOMARCO 1])), 12, 31))",
+              "expression": "Calendar(Date(Year(MIN('Base_Projetos'[DATA FORMALIZAÇÃOMARCO 1])), 1, 1), Date(Year(MAX('Base_Projetos'[DATA FORMALIZAÇÃOMARCO 1])), 12, 31))",
               "type": "calculated"
             }
           }
@@ -2254,7 +2359,7 @@
             "name": "LocalDateTable_1eab7015-13e8-4b80-8988-062dce6ea26c",
             "mode": "import",
             "source": {
-              "expression": "Calendar(Date(Year(MIN('PREENCHIMENTO DE DADOS'[DATA ENCERRAMENTO FASE 2])), 1, 1), Date(Year(MAX('PREENCHIMENTO DE DADOS'[DATA ENCERRAMENTO FASE 2])), 12, 31))",
+              "expression": "Calendar(Date(Year(MIN('Base_Projetos'[DATA ENCERRAMENTO FASE 2])), 1, 1), Date(Year(MAX('Base_Projetos'[DATA ENCERRAMENTO FASE 2])), 12, 31))",
               "type": "calculated"
             }
           }
@@ -2460,7 +2565,7 @@
             "name": "LocalDateTable_95382c1f-d528-4162-84c6-f79744398dd3",
             "mode": "import",
             "source": {
-              "expression": "Calendar(Date(Year(MIN('PREENCHIMENTO DE DADOS'[DATA FORMALIZAÇÃOMARCO 2])), 1, 1), Date(Year(MAX('PREENCHIMENTO DE DADOS'[DATA FORMALIZAÇÃOMARCO 2])), 12, 31))",
+              "expression": "Calendar(Date(Year(MIN('Base_Projetos'[DATA FORMALIZAÇÃOMARCO 2])), 1, 1), Date(Year(MAX('Base_Projetos'[DATA FORMALIZAÇÃOMARCO 2])), 12, 31))",
               "type": "calculated"
             }
           }
@@ -2666,7 +2771,213 @@
             "name": "LocalDateTable_02078865-a2ae-417d-890c-6ef8ce62ab6a",
             "mode": "import",
             "source": {
-              "expression": "Calendar(Date(Year(MIN('PREENCHIMENTO DE DADOS'[DATA ENTREGA PROJETO])), 1, 1), Date(Year(MAX('PREENCHIMENTO DE DADOS'[DATA ENTREGA PROJETO])), 12, 31))",
+              "expression": "Calendar(Date(Year(MIN('Base_Projetos'[DATA ENTREGA PROJETO])), 1, 1), Date(Year(MAX('Base_Projetos'[DATA ENTREGA PROJETO])), 12, 31))",
+              "type": "calculated"
+            }
+          }
+        ],
+        "showAsVariationsOnly": true
+      },
+      {
+        "name": "LocalDateTable_6cd2eb1c-3199-4b46-8367-36efa5044e84",
+        "annotations": [
+          {
+            "name": "__PBI_LocalDateTable",
+            "value": "true"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              }
+            ],
+            "dataCategory": "PaddedDateTableDates",
+            "dataType": "dateTime",
+            "formatString": "General Date",
+            "isHidden": true,
+            "isNameInferred": true,
+            "lineageTag": "4d7dbc4c-c2f6-4061-a7fa-16a490ddd825",
+            "sourceColumn": "[Date]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Ano",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Year"
+              }
+            ],
+            "dataCategory": "Years",
+            "dataType": "int64",
+            "expression": "YEAR([Date])",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "e59ded07-664a-49b8-9c29-5700779c9232",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "MonthNo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "MonthNumber"
+              }
+            ],
+            "dataCategory": "MonthOfYear",
+            "dataType": "int64",
+            "expression": "MONTH([Date])",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "22e1a150-fb64-4ad2-a186-71b3469b6489",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Mês",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Month"
+              }
+            ],
+            "dataCategory": "Months",
+            "dataType": "string",
+            "expression": "FORMAT([Date], \"MMMM\")",
+            "isHidden": true,
+            "lineageTag": "bb7d989d-18e4-49aa-b2c8-cdc3044b37d0",
+            "sortByColumn": "MonthNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "QuarterNo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "QuarterNumber"
+              }
+            ],
+            "dataCategory": "QuarterOfYear",
+            "dataType": "int64",
+            "expression": "INT(([MonthNo] + 2) / 3)",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "f0043ebd-585f-4d11-992d-26a2b0569fb4",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Trimestre",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Quarter"
+              }
+            ],
+            "dataCategory": "Quarters",
+            "dataType": "string",
+            "expression": "\"Trim \" & [QuarterNo]",
+            "isHidden": true,
+            "lineageTag": "9690d83d-b260-4417-aa7c-664614bcd39d",
+            "sortByColumn": "QuarterNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Dia",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Day"
+              }
+            ],
+            "dataCategory": "DayOfMonth",
+            "dataType": "int64",
+            "expression": "DAY([Date])",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "2a313e19-fa9d-42fb-9212-310f7b8d6e8c",
+            "summarizeBy": "none",
+            "type": "calculated"
+          }
+        ],
+        "hierarchies": [
+          {
+            "name": "Hierarquia de datas",
+            "annotations": [
+              {
+                "name": "TemplateId",
+                "value": "DateHierarchy"
+              }
+            ],
+            "levels": [
+              {
+                "name": "Ano",
+                "column": "Ano",
+                "lineageTag": "3faa95f2-074c-488b-a372-6b3c3dbfa615",
+                "ordinal": 0
+              },
+              {
+                "name": "Trimestre",
+                "column": "Trimestre",
+                "lineageTag": "6ed9ee61-9256-41ba-a602-60778c4eab48",
+                "ordinal": 1
+              },
+              {
+                "name": "Mês",
+                "column": "Mês",
+                "lineageTag": "d8250090-72cb-445b-bf09-a37c3e0660f3",
+                "ordinal": 2
+              },
+              {
+                "name": "Dia",
+                "column": "Dia",
+                "lineageTag": "73f39cc0-8c58-4200-a3f0-f1706a31ce03",
+                "ordinal": 3
+              }
+            ],
+            "lineageTag": "c1ff8003-4dac-4946-a610-1e1067656f63"
+          }
+        ],
+        "isHidden": true,
+        "lineageTag": "86467e9b-ed31-4100-94d3-b8882695ff50",
+        "partitions": [
+          {
+            "name": "LocalDateTable_6cd2eb1c-3199-4b46-8367-36efa5044e84",
+            "mode": "import",
+            "source": {
+              "expression": "Calendar(Date(Year(MIN('Base_Projetos'[Data_Entrada])), 1, 1), Date(Year(MAX('Base_Projetos'[Data_Entrada])), 12, 31))",
               "type": "calculated"
             }
           }
