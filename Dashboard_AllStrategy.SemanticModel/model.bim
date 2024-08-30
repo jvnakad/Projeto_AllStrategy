@@ -4,7 +4,7 @@
     "annotations": [
       {
         "name": "PBI_QueryOrder",
-        "value": "[\"Base_Projetos\",\"caminhoRede\"]"
+        "value": "[\"Base_Projetos\",\"caminhoRede\",\"Medidas\"]"
       },
       {
         "name": "__PBI_TimeIntelligenceEnabled",
@@ -129,12 +129,27 @@
         "toTable": "LocalDateTable_02078865-a2ae-417d-890c-6ef8ce62ab6a"
       },
       {
-        "name": "11a97342-fab1-4fc1-8eda-76eb0bbe24c2",
-        "fromColumn": "Data_Entrada",
-        "fromTable": "Base_Projetos",
+        "name": "5aa7f05e-3903-45a0-9f08-424042b9e354",
+        "fromColumn": "Date",
+        "fromTable": "Calendário",
         "joinOnDateBehavior": "datePartOnly",
         "toColumn": "Date",
-        "toTable": "LocalDateTable_6cd2eb1c-3199-4b46-8367-36efa5044e84"
+        "toTable": "LocalDateTable_01967f7f-4018-4382-a7a9-a5010c192068"
+      },
+      {
+        "name": "696531fd-f1d2-4593-9b0a-e7c9133d4267",
+        "fromColumn": "Mês/Ano",
+        "fromTable": "Calendário",
+        "joinOnDateBehavior": "datePartOnly",
+        "toColumn": "Date",
+        "toTable": "LocalDateTable_1b183c66-e723-47ad-b004-85a1187160ed"
+      },
+      {
+        "name": "87319d46-0c56-cfc5-42bb-66f1f4ce0c7d",
+        "fromColumn": "Data_Entrada",
+        "fromTable": "Base_Projetos",
+        "toColumn": "Date",
+        "toTable": "Calendário"
       }
     ],
     "sourceQueryCulture": "pt-BR",
@@ -178,7 +193,7 @@
               }
             ],
             "dataType": "dateTime",
-            "formatString": "Long Date",
+            "formatString": "Short Date",
             "lineageTag": "ee11a128-23b3-4fa1-b193-1d5f5043dfbc",
             "sourceColumn": "Data_Alinhamento",
             "summarizeBy": "none",
@@ -236,7 +251,7 @@
               }
             ],
             "dataType": "dateTime",
-            "formatString": "Long Date",
+            "formatString": "Short Date",
             "lineageTag": "3bf60a5b-9b42-4826-bd5f-e9ae5b726df1",
             "sourceColumn": "DATA KICKOFF",
             "summarizeBy": "none",
@@ -265,7 +280,7 @@
               }
             ],
             "dataType": "dateTime",
-            "formatString": "Long Date",
+            "formatString": "Short Date",
             "lineageTag": "8ad6987a-82cc-45ff-8950-36fa34db1292",
             "sourceColumn": "DATA ENCERRAMENTO FASE 1",
             "summarizeBy": "none",
@@ -352,7 +367,7 @@
               }
             ],
             "dataType": "dateTime",
-            "formatString": "Long Date",
+            "formatString": "Short Date",
             "lineageTag": "17882eac-745c-4cbc-ac31-0fd81c4b22c2",
             "sourceColumn": "DATA ENCERRAMENTO FASE 2",
             "summarizeBy": "none",
@@ -492,21 +507,10 @@
               }
             ],
             "dataType": "dateTime",
-            "formatString": "Long Date",
+            "formatString": "Short Date",
             "lineageTag": "5a1dd4b1-a343-4794-8f7e-5549512a53fa",
             "sourceColumn": "Data_Entrada",
-            "summarizeBy": "none",
-            "variations": [
-              {
-                "name": "Variation",
-                "defaultHierarchy": {
-                  "hierarchy": "Hierarquia de datas",
-                  "table": "LocalDateTable_6cd2eb1c-3199-4b46-8367-36efa5044e84"
-                },
-                "isDefault": true,
-                "relationship": "11a97342-fab1-4fc1-8eda-76eb0bbe24c2"
-              }
-            ]
+            "summarizeBy": "none"
           },
           {
             "name": "Prazo Alinhamento",
@@ -572,88 +576,9 @@
             "lineageTag": "2989f2cb-9d5e-41a3-b556-15867666e31d",
             "sourceColumn": "Prazo Atual",
             "summarizeBy": "none"
-          },
-          {
-            "name": "AnoMês",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "expression": [
-              "FORMAT('Base_Projetos'[Data_Entrada], \"YYYYMM\")",
-              ""
-            ],
-            "isDataTypeInferred": true,
-            "lineageTag": "13e917c5-c60f-4309-926a-6feb44941924",
-            "summarizeBy": "none",
-            "type": "calculated"
           }
         ],
         "lineageTag": "8d00d64e-df4d-4062-a8c1-a39ecbaa7ed9",
-        "measures": [
-          {
-            "name": "MédiaEntradasPorMês",
-            "annotations": [
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "expression": [
-              "",
-              "AVERAGEX(",
-              "    SUMMARIZE(",
-              "        'Base_Projetos',",
-              "        'Base_Projetos'[Data_Entrada],",
-              "        \"AnoMês\", FORMAT('Base_Projetos'[Data_Entrada], \"YYYYMM\"),",
-              "        \"ContagemEntradas\", COUNTROWS('Base_Projetos')",
-              "    ),",
-              "    [ContagemEntradas]",
-              ")",
-              ""
-            ],
-            "lineageTag": "642ad9ad-c2aa-428c-93a1-f783512b467a"
-          },
-          {
-            "name": "ProjetosPorMês",
-            "expression": "COUNTROWS('Base_Projetos')",
-            "formatString": "0",
-            "lineageTag": "5711e1b5-c9e7-4e07-924f-e1dbdb45b06f"
-          },
-          {
-            "name": "EvoluçãoMensal",
-            "annotations": [
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "expression": [
-              "",
-              "DIVIDE(",
-              "    (Base_Projetos[ProjetosPorMês] - CALCULATE(Base_Projetos[ProjetosPorMês], PREVIOUSMONTH('Base_Projetos'[Data_Entrada]))),",
-              "    CALCULATE(Base_Projetos[ProjetosPorMês], PREVIOUSMONTH('Base_Projetos'[Data_Entrada])),",
-              "    0",
-              ")",
-              ""
-            ],
-            "lineageTag": "5f7b065a-c276-4795-bfc3-b798a7e80d84"
-          },
-          {
-            "name": "TotalProjeto LM",
-            "expression": [
-              "",
-              "CALCULATE(",
-              "    Base_Projetos[ProjetosPorMês],",
-              "    DATEADD(Base_Projetos[AnoMês], -1, MONTH))"
-            ],
-            "formatString": "0",
-            "lineageTag": "53220b65-fc42-4b5e-a1f6-2dbfe3ba6688"
-          }
-        ],
         "partitions": [
           {
             "name": "Base_Projetos",
@@ -2779,7 +2704,135 @@
         "showAsVariationsOnly": true
       },
       {
-        "name": "LocalDateTable_6cd2eb1c-3199-4b46-8367-36efa5044e84",
+        "name": "Calendário",
+        "annotations": [
+          {
+            "name": "PBI_Id",
+            "value": "1813597ae4d64fd0bc06f1e8d355fab2"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "General Date",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "3e5be8b7-0681-48d9-b403-331730392cb8",
+            "sourceColumn": "[Date]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn",
+            "variations": [
+              {
+                "name": "Variation",
+                "defaultHierarchy": {
+                  "hierarchy": "Hierarquia de datas",
+                  "table": "LocalDateTable_01967f7f-4018-4382-a7a9-a5010c192068"
+                },
+                "isDefault": true,
+                "relationship": "5aa7f05e-3903-45a0-9f08-424042b9e354"
+              }
+            ]
+          },
+          {
+            "name": "Ano",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "expression": "YEAR('Calendário'[Date])",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "lineageTag": "46f68b0f-608f-498c-aee5-46f74a2a250d",
+            "summarizeBy": "sum",
+            "type": "calculated"
+          },
+          {
+            "name": "Mês",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "expression": "MONTH('Calendário'[Date])",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "lineageTag": "9941b88c-9e7f-4220-8b67-e4aaed105c9e",
+            "summarizeBy": "sum",
+            "type": "calculated"
+          },
+          {
+            "name": "Nome Mês",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "expression": "'Calendário'[Date].[Mês]",
+            "isDataTypeInferred": true,
+            "lineageTag": "5e2adb19-6ff7-4b22-a320-84704bab41c1",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Mês/Ano",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isCustom\":true}"
+              }
+            ],
+            "dataType": "dateTime",
+            "expression": "STARTOFMONTH('Calendário'[Date])",
+            "formatString": "mmm/yy",
+            "isDataTypeInferred": true,
+            "lineageTag": "dcce26a8-d551-4c32-8a90-90815bcbb3bb",
+            "summarizeBy": "none",
+            "type": "calculated",
+            "variations": [
+              {
+                "name": "Variation",
+                "defaultHierarchy": {
+                  "hierarchy": "Hierarquia de datas",
+                  "table": "LocalDateTable_1b183c66-e723-47ad-b004-85a1187160ed"
+                },
+                "isDefault": true,
+                "relationship": "696531fd-f1d2-4593-9b0a-e7c9133d4267"
+              }
+            ]
+          }
+        ],
+        "lineageTag": "c699039c-141c-4a63-81f9-21eeeac8bd55",
+        "partitions": [
+          {
+            "name": "Calendário",
+            "mode": "import",
+            "source": {
+              "expression": "CALENDARAUTO()",
+              "type": "calculated"
+            }
+          }
+        ]
+      },
+      {
+        "name": "LocalDateTable_01967f7f-4018-4382-a7a9-a5010c192068",
         "annotations": [
           {
             "name": "__PBI_LocalDateTable",
@@ -2800,7 +2853,7 @@
             "formatString": "General Date",
             "isHidden": true,
             "isNameInferred": true,
-            "lineageTag": "4d7dbc4c-c2f6-4061-a7fa-16a490ddd825",
+            "lineageTag": "d4609618-fd85-46f7-9b9c-e68507646616",
             "sourceColumn": "[Date]",
             "summarizeBy": "none",
             "type": "calculatedTableColumn"
@@ -2822,7 +2875,7 @@
             "expression": "YEAR([Date])",
             "formatString": "0",
             "isHidden": true,
-            "lineageTag": "e59ded07-664a-49b8-9c29-5700779c9232",
+            "lineageTag": "701cacfd-93bf-4cab-83bd-6abbc0441fea",
             "summarizeBy": "none",
             "type": "calculated"
           },
@@ -2843,7 +2896,7 @@
             "expression": "MONTH([Date])",
             "formatString": "0",
             "isHidden": true,
-            "lineageTag": "22e1a150-fb64-4ad2-a186-71b3469b6489",
+            "lineageTag": "049b93b8-6f2a-4dea-8ee5-c84ed0310051",
             "summarizeBy": "none",
             "type": "calculated"
           },
@@ -2863,7 +2916,7 @@
             "dataType": "string",
             "expression": "FORMAT([Date], \"MMMM\")",
             "isHidden": true,
-            "lineageTag": "bb7d989d-18e4-49aa-b2c8-cdc3044b37d0",
+            "lineageTag": "2c797b53-3084-4e1b-af4c-dfa94b9294dd",
             "sortByColumn": "MonthNo",
             "summarizeBy": "none",
             "type": "calculated"
@@ -2885,7 +2938,7 @@
             "expression": "INT(([MonthNo] + 2) / 3)",
             "formatString": "0",
             "isHidden": true,
-            "lineageTag": "f0043ebd-585f-4d11-992d-26a2b0569fb4",
+            "lineageTag": "db3cc915-a397-4735-8e05-51c0f71c9ad0",
             "summarizeBy": "none",
             "type": "calculated"
           },
@@ -2905,7 +2958,7 @@
             "dataType": "string",
             "expression": "\"Trim \" & [QuarterNo]",
             "isHidden": true,
-            "lineageTag": "9690d83d-b260-4417-aa7c-664614bcd39d",
+            "lineageTag": "b5d69fee-f5a3-4e22-9fe5-a0ccf250df7d",
             "sortByColumn": "QuarterNo",
             "summarizeBy": "none",
             "type": "calculated"
@@ -2927,7 +2980,7 @@
             "expression": "DAY([Date])",
             "formatString": "0",
             "isHidden": true,
-            "lineageTag": "2a313e19-fa9d-42fb-9212-310f7b8d6e8c",
+            "lineageTag": "9750671a-534e-4b61-94a0-f1d63aacdc78",
             "summarizeBy": "none",
             "type": "calculated"
           }
@@ -2945,44 +2998,296 @@
               {
                 "name": "Ano",
                 "column": "Ano",
-                "lineageTag": "3faa95f2-074c-488b-a372-6b3c3dbfa615",
+                "lineageTag": "b6d5bab2-d5a0-414b-8622-8686a5e8066a",
                 "ordinal": 0
               },
               {
                 "name": "Trimestre",
                 "column": "Trimestre",
-                "lineageTag": "6ed9ee61-9256-41ba-a602-60778c4eab48",
+                "lineageTag": "7e8fbddb-8720-494f-8ba8-bf09fb7e18aa",
                 "ordinal": 1
               },
               {
                 "name": "Mês",
                 "column": "Mês",
-                "lineageTag": "d8250090-72cb-445b-bf09-a37c3e0660f3",
+                "lineageTag": "edb8b6b2-806d-47c1-9394-587c8e7de7f2",
                 "ordinal": 2
               },
               {
                 "name": "Dia",
                 "column": "Dia",
-                "lineageTag": "73f39cc0-8c58-4200-a3f0-f1706a31ce03",
+                "lineageTag": "90240aa2-f475-46b6-b67d-ec7264f0f36c",
                 "ordinal": 3
               }
             ],
-            "lineageTag": "c1ff8003-4dac-4946-a610-1e1067656f63"
+            "lineageTag": "b60bae02-214a-423a-81f2-728be0b8c492"
           }
         ],
         "isHidden": true,
-        "lineageTag": "86467e9b-ed31-4100-94d3-b8882695ff50",
+        "lineageTag": "f9932f99-5a79-431e-b78d-420885f64d32",
         "partitions": [
           {
-            "name": "LocalDateTable_6cd2eb1c-3199-4b46-8367-36efa5044e84",
+            "name": "LocalDateTable_01967f7f-4018-4382-a7a9-a5010c192068",
             "mode": "import",
             "source": {
-              "expression": "Calendar(Date(Year(MIN('Base_Projetos'[Data_Entrada])), 1, 1), Date(Year(MAX('Base_Projetos'[Data_Entrada])), 12, 31))",
+              "expression": "Calendar(Date(Year(MIN('Calendário'[Date])), 1, 1), Date(Year(MAX('Calendário'[Date])), 12, 31))",
               "type": "calculated"
             }
           }
         ],
         "showAsVariationsOnly": true
+      },
+      {
+        "name": "LocalDateTable_1b183c66-e723-47ad-b004-85a1187160ed",
+        "annotations": [
+          {
+            "name": "__PBI_LocalDateTable",
+            "value": "true"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              }
+            ],
+            "dataCategory": "PaddedDateTableDates",
+            "dataType": "dateTime",
+            "formatString": "General Date",
+            "isHidden": true,
+            "isNameInferred": true,
+            "lineageTag": "fcf857ca-d815-4c48-9370-d98c0ec41f37",
+            "sourceColumn": "[Date]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Ano",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Year"
+              }
+            ],
+            "dataCategory": "Years",
+            "dataType": "int64",
+            "expression": "YEAR([Date])",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "d8a50fc2-8c4f-4ebf-9f25-fc669ac08ea0",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "MonthNo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "MonthNumber"
+              }
+            ],
+            "dataCategory": "MonthOfYear",
+            "dataType": "int64",
+            "expression": "MONTH([Date])",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "ed63ff33-79d2-4556-9067-9011357b659c",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Mês",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Month"
+              }
+            ],
+            "dataCategory": "Months",
+            "dataType": "string",
+            "expression": "FORMAT([Date], \"MMMM\")",
+            "isHidden": true,
+            "lineageTag": "96a2489a-663c-4db3-86ca-757953a82c7a",
+            "sortByColumn": "MonthNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "QuarterNo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "QuarterNumber"
+              }
+            ],
+            "dataCategory": "QuarterOfYear",
+            "dataType": "int64",
+            "expression": "INT(([MonthNo] + 2) / 3)",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "19cb4464-8082-4c1e-b363-6f52edac7c2a",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Trimestre",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Quarter"
+              }
+            ],
+            "dataCategory": "Quarters",
+            "dataType": "string",
+            "expression": "\"Trim \" & [QuarterNo]",
+            "isHidden": true,
+            "lineageTag": "000ca17d-e0f3-4f06-b666-ce3273f7d210",
+            "sortByColumn": "QuarterNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Dia",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Day"
+              }
+            ],
+            "dataCategory": "DayOfMonth",
+            "dataType": "int64",
+            "expression": "DAY([Date])",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "a72c199d-a187-4011-872c-2fd57946f0d0",
+            "summarizeBy": "none",
+            "type": "calculated"
+          }
+        ],
+        "hierarchies": [
+          {
+            "name": "Hierarquia de datas",
+            "annotations": [
+              {
+                "name": "TemplateId",
+                "value": "DateHierarchy"
+              }
+            ],
+            "levels": [
+              {
+                "name": "Ano",
+                "column": "Ano",
+                "lineageTag": "99a123ae-12d9-452a-9515-cfc4d06f97e1",
+                "ordinal": 0
+              },
+              {
+                "name": "Trimestre",
+                "column": "Trimestre",
+                "lineageTag": "17be864f-0722-41d6-a8fb-391b3971d88a",
+                "ordinal": 1
+              },
+              {
+                "name": "Mês",
+                "column": "Mês",
+                "lineageTag": "7cb87985-e2bf-4cc7-8bb4-992e45813e10",
+                "ordinal": 2
+              },
+              {
+                "name": "Dia",
+                "column": "Dia",
+                "lineageTag": "29a5a5d8-354b-484e-931d-42aa828adf15",
+                "ordinal": 3
+              }
+            ],
+            "lineageTag": "c9510326-a4fe-424f-9ca7-0a872ffbadca"
+          }
+        ],
+        "isHidden": true,
+        "lineageTag": "8f913930-b85a-4061-92b1-6a59a1291391",
+        "partitions": [
+          {
+            "name": "LocalDateTable_1b183c66-e723-47ad-b004-85a1187160ed",
+            "mode": "import",
+            "source": {
+              "expression": "Calendar(Date(Year(MIN('Calendário'[Mês/Ano])), 1, 1), Date(Year(MAX('Calendário'[Mês/Ano])), 12, 31))",
+              "type": "calculated"
+            }
+          }
+        ],
+        "showAsVariationsOnly": true
+      },
+      {
+        "name": "Medidas",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "lineageTag": "a262aee5-0e97-4265-be9c-b4d895ce2554",
+        "measures": [
+          {
+            "name": "Total Entrada",
+            "expression": "COUNT(Base_Projetos[ID_PROJETO])",
+            "formatString": "0",
+            "lineageTag": "2b43d0e5-9e98-4088-9bad-3391243b9bdf"
+          },
+          {
+            "name": "Total Ent. Mês Anterior",
+            "expression": "CALCULATE([Total Entrada],DATEADD('Calendário'[Date],-1,MONTH))",
+            "formatString": "0",
+            "lineageTag": "b4db67aa-3cc8-4e72-8b05-834e3ac7bfba"
+          },
+          {
+            "name": "Variação %",
+            "expression": "IF(ISBLANK([Total Ent. Mês Anterior]),BLANK(), DIVIDE([Total Entrada],[Total Ent. Mês Anterior],0)-1)",
+            "formatString": "0%;-0%;0%",
+            "lineageTag": "92b9cf11-27dd-4602-ad93-9894f8e51d17"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Medidas",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Fonte = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText(\"i44FAA==\", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#\"Coluna 1\" = _t]),",
+                "    #\"Colunas Removidas\" = Table.RemoveColumns(Fonte,{\"Coluna 1\"})",
+                "in",
+                "    #\"Colunas Removidas\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
       }
     ]
   }

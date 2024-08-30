@@ -19,6 +19,32 @@
             "width": 234
           },
           "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 413,
+            "y": 53
+          },
+          "nodeIndex": "Calendário",
+          "nodeLineageTag": "c699039c-141c-4a63-81f9-21eeeac8bd55",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 697,
+            "y": 98
+          },
+          "nodeIndex": "Medidas",
+          "nodeLineageTag": "a262aee5-0e97-4265-be9c-b4d895ce2554",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
         }
       ],
       "name": "Todas as tabelas",
