@@ -576,6 +576,62 @@
             "lineageTag": "2989f2cb-9d5e-41a3-b556-15867666e31d",
             "sourceColumn": "Prazo Atual",
             "summarizeBy": "none"
+          },
+          {
+            "name": "Dias_Alinhamento",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "f78aecd8-da4b-48b2-9692-9a81115b1963",
+            "sourceColumn": "Dias_Alinhamento",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Dias_Kickoff",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "24fe40c9-4135-43a6-8495-311e438f4c94",
+            "sourceColumn": "Dias_Kickoff",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Dias_Fase_1",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "d602b700-5c15-4ddd-b443-aecd90e81661",
+            "sourceColumn": "Dias_Fase_1",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Dias_Fase_2",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "fb97ff84-d582-4271-b68d-d37184cd3f0d",
+            "sourceColumn": "Dias_Fase_2",
+            "summarizeBy": "sum"
           }
         ],
         "lineageTag": "8d00d64e-df4d-4062-a8c1-a39ecbaa7ed9",
@@ -630,9 +686,14 @@
                 "in",
                 "   PrazoAtual),",
                 "    #\"Colunas Reordenadas\" = Table.ReorderColumns(#\"Prazo Atual\",{\"ID_PROJETO\", \"NOME\", \"Data_Entrada\", \"Data_Alinhamento\", \"PRAZO FORMALIZAÇÃO#(lf)ALINHAMENTO\", \"DATA KICKOFF\", \"DATA ENCERRAMENTO FASE 1\", \"PRAZO FORMALIZAÇÃO#(lf)MARCO 1\", \"DATA FORMALIZAÇÃO#(lf)MARCO 1\", \"DATA ENCERRAMENTO FASE 2\", \"DATA FORMALIZAÇÃO#(lf)MARCO 2\", \"FORMALIZAÇÃO MARCO 2\", \"COMUNICAÇÃO PADRÃO MARCO 2\", \"DATA ENTREGA PROJETO\", \"Status\", \"Prazo Alinhamento\", \"Prazo Kickoff\", \"Prazo Fase 1\", \"Prazo Fase 2\", \"Prazo Atual\"}),",
-                "    #\"Tipo Alterado1\" = Table.TransformColumnTypes(#\"Colunas Reordenadas\",{{\"Data_Entrada\", type date}})",
+                "    #\"Tipo Alterado1\" = Table.TransformColumnTypes(#\"Colunas Reordenadas\",{{\"Data_Entrada\", type date}}),",
+                "    #\"Coluna Dias Alinhamento\" = Table.AddColumn(#\"Tipo Alterado1\", \"Dias_Alinhamento\", each Duration.Days([Data_Alinhamento] - [Data_Entrada])),",
+                "    #\"Coluna Dias Kickoff\" = Table.AddColumn(#\"Coluna Dias Alinhamento\", \"Dias_Kickoff\", each Duration.Days([DATA KICKOFF] - [Data_Alinhamento])),",
+                "    #\"Coluna Dias Fase 1\" = Table.AddColumn(#\"Coluna Dias Kickoff\", \"Dias_Fase_1\", each Duration.Days([DATA ENCERRAMENTO FASE 1] - [DATA KICKOFF])),",
+                "    #\"Coluna Dias Fase 2\" = Table.AddColumn(#\"Coluna Dias Fase 1\", \"Dias_Fase_2\", each Duration.Days([DATA ENCERRAMENTO FASE 2] - [DATA ENCERRAMENTO FASE 1])),",
+                "    #\"Tipo Alterado2\" = Table.TransformColumnTypes(#\"Coluna Dias Fase 2\",{{\"Dias_Fase_2\", Int64.Type}, {\"Dias_Fase_1\", Int64.Type}, {\"Dias_Kickoff\", Int64.Type}, {\"Dias_Alinhamento\", Int64.Type}})",
                 "in",
-                "    #\"Tipo Alterado1\""
+                "    #\"Tipo Alterado2\""
               ],
               "type": "m"
             }
@@ -3249,6 +3310,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navegação"
           }
         ],
         "lineageTag": "a262aee5-0e97-4265-be9c-b4d895ce2554",
@@ -3270,6 +3335,130 @@
             "expression": "IF(ISBLANK([Total Ent. Mês Anterior]),BLANK(), DIVIDE([Total Entrada],[Total Ent. Mês Anterior],0)-1)",
             "formatString": "0%;-0%;0%",
             "lineageTag": "92b9cf11-27dd-4602-ad93-9894f8e51d17"
+          },
+          {
+            "name": "Média Dias Alinhamento",
+            "expression": [
+              "",
+              "DIVIDE(",
+              "    SUMX(",
+              "        FILTER(",
+              "            Base_Projetos,",
+              "            NOT(ISBLANK(Base_Projetos[Dias_Alinhamento])) && Base_Projetos[Dias_Alinhamento] > 0",
+              "        ),",
+              "        Base_Projetos[Dias_Alinhamento]",
+              "    ),",
+              "    COUNTAX(",
+              "        FILTER(",
+              "            'Base_Projetos',",
+              "            NOT(ISBLANK(Base_Projetos[Dias_Alinhamento])) && Base_Projetos[Dias_Alinhamento] > 0",
+              "        ),",
+              "        Base_Projetos[Dias_Alinhamento]",
+              "    )",
+              ")",
+              ""
+            ],
+            "formatString": "0",
+            "lineageTag": "07a1fb40-c70a-40f5-aaf6-d195c38e2af5"
+          },
+          {
+            "name": "Média Dias Kickoff",
+            "expression": [
+              "",
+              "DIVIDE(",
+              "    SUMX(",
+              "        FILTER(",
+              "            Base_Projetos,",
+              "            NOT(ISBLANK(Base_Projetos[Dias_Kickoff])) && Base_Projetos[Dias_Kickoff] > 0",
+              "        ),",
+              "        Base_Projetos[Dias_Kickoff]",
+              "    ),",
+              "    COUNTAX(",
+              "        FILTER(",
+              "            'Base_Projetos',",
+              "            NOT(ISBLANK(Base_Projetos[Dias_Kickoff])) && Base_Projetos[Dias_Kickoff] > 0",
+              "        ),",
+              "        Base_Projetos[Dias_Kickoff]",
+              "    )",
+              ")",
+              ""
+            ],
+            "formatString": "0",
+            "lineageTag": "126c646a-40a3-4e12-833f-48da097671f6"
+          },
+          {
+            "name": "Média Dias Fase 1",
+            "expression": [
+              "",
+              "DIVIDE(",
+              "    SUMX(",
+              "        FILTER(",
+              "            Base_Projetos,",
+              "            NOT(ISBLANK(Base_Projetos[Dias_Fase_1])) && Base_Projetos[Dias_Fase_1] > 0",
+              "        ),",
+              "        Base_Projetos[Dias_Fase_1]",
+              "    ),",
+              "    COUNTAX(",
+              "        FILTER(",
+              "            'Base_Projetos',",
+              "            NOT(ISBLANK(Base_Projetos[Dias_Fase_1])) && Base_Projetos[Dias_Fase_1] > 0",
+              "        ),",
+              "        Base_Projetos[Dias_Fase_1]",
+              "    )",
+              ")",
+              ""
+            ],
+            "formatString": "0",
+            "lineageTag": "702adc10-b4e3-4358-8df7-ff563fcaac43"
+          },
+          {
+            "name": "Média Dias Fase 2",
+            "expression": [
+              "",
+              "DIVIDE(",
+              "    SUMX(",
+              "        FILTER(",
+              "            Base_Projetos,",
+              "            NOT(ISBLANK(Base_Projetos[Dias_Fase_2])) && Base_Projetos[Dias_Fase_2] > 0",
+              "        ),",
+              "        Base_Projetos[Dias_Fase_2]",
+              "    ),",
+              "    COUNTAX(",
+              "        FILTER(",
+              "            'Base_Projetos',",
+              "            NOT(ISBLANK(Base_Projetos[Dias_Fase_2])) && Base_Projetos[Dias_Fase_2] > 0",
+              "        ),",
+              "        Base_Projetos[Dias_Fase_2]",
+              "    )",
+              ")",
+              ""
+            ],
+            "formatString": "0",
+            "lineageTag": "eb207b44-162b-4f81-b463-f03096bb302f"
+          },
+          {
+            "name": "Prazo_Alinhamento",
+            "expression": "15",
+            "formatString": "0",
+            "lineageTag": "d57edd3b-6e72-4a77-a6fd-2a4c0e7629eb"
+          },
+          {
+            "name": "Prazo_Kickoff",
+            "expression": "10",
+            "formatString": "0",
+            "lineageTag": "d1cf7768-0137-4a9b-81e9-e4d371685554"
+          },
+          {
+            "name": "Prazo_Fase_1",
+            "expression": "45",
+            "formatString": "0",
+            "lineageTag": "1911d641-8b52-4d72-ac65-51ab08b30ffb"
+          },
+          {
+            "name": "Prazo_Fase_2",
+            "expression": "120",
+            "formatString": "0",
+            "lineageTag": "3d895080-1c89-4a83-9794-1bbd9fef6d4b"
           }
         ],
         "partitions": [
