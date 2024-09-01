@@ -30,9 +30,9 @@ Antes de começar, certifique-se de ter o [Power BI Desktop](https://powerbi.mic
 
 Para clonar o repositório, utilize o seguinte comando no terminal:
 
-\```bash
+```
 git clone https://github.com/jvnakad/Projeto_AllStrategy.git
-\```
+```
 
 ## Configuração do Projeto
 
