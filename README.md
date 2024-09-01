@@ -45,9 +45,9 @@ Após clonar o repositório, é necessário configurar o parâmetro `caminhoRede
 
 Por exemplo, se você clonou o repositório na pasta `C:\Users\SeuNome\Documents\Projetos\`, o valor do parâmetro `caminhoRede` deve ser:
 
-\```
+```
 C:\Users\SeuNome\Documents\Projetos\
-\```
+```
 
 ## Utilização
 
